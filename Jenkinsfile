@@ -11,7 +11,9 @@ pipeline {
         stage('Build and Deploy to Dev Environment') {
             steps {
                 echo 'Building..'
-                ansible-playbook deploy-ieopetclinic-dev.yaml 
+                sh """
+                    ansible-playbook deploy-ieopetclinic-dev.yaml
+                   """
             }
         }
         stage('Test') {
