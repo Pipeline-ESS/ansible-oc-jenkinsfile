@@ -14,7 +14,7 @@ pipeline {
                 dir('/usr/bin')
               {
                
-               sh 'ansible all -m ping -i hosts'
+               sh 'ansible-playbook deploy-ieopetclinic-dev.yaml'
                
             }
             }
