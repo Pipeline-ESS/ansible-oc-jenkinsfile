@@ -11,9 +11,7 @@ pipeline {
         stage('Build and Deploy to Dev Environment') {
             steps {
                 echo 'Building..'
-                sh """
-                    ansible-playbook deploy-ieopetclinic-dev.yaml
-                   """
+                sh 'ansible all -m ping -i hosts'
             }
         }
         stage('Test') {
