@@ -11,8 +11,8 @@ pipeline {
         stage('Build and Deploy to Dev Environment') {
             steps {
                 echo 'Building..'
-                sh 'sudo su -' 
-                sh 'sudo ansible-playbook deploy-ieopetclinic-dev.yaml'
+                //sh 'sudo ansible-playbook deploy-ieopetclinic-dev.yaml'
+                ansiblePlaybook installation: 'ansible', playbook: '/root/ansible-oc-jenkinsfile/deploy-ieopetclinic-dev.yaml'
             }
         }
         stage('Test') {
