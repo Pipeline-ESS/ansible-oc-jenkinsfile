@@ -11,7 +11,7 @@ pipeline {
         stage('Build and Deploy to Dev Environment') {
             steps {
                 echo 'Building..'
-                dir('ansible')
+                dir('/usr/bin')
               {
                
                sh 'ansible all -m ping -i hosts'
