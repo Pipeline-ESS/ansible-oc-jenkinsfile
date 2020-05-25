@@ -11,7 +11,7 @@ pipeline {
         stage('Build and Deploy to Dev Environment') {
             steps {
                 echo 'Building..'
-
+                sh 'sudo su -' 
                 sh 'sudo ansible-playbook deploy-ieopetclinic-dev.yaml'
             }
         }
