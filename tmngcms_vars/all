@@ -1,0 +1,12 @@
+---
+# oc_kube_config:
+# oc_token:
+# openshift_master:
+openshift_cli: oc
+
+project_suffix: ieopetclinic 
+
+username: schennu
+password: welcome123 
+app_name: ieopetclinic
+

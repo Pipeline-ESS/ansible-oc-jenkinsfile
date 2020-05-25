@@ -1,0 +1,28 @@
+---
+- name: Deploy IEoPETCLINIC CI-CD PIPELINE to OPENSHIFT ENVIRONMENT
+  hosts: localhost
+  gather_facts: false
+  run_once: true
+  vars_files:
+    - tmngcms_vars/all
+
+  tasks:
+    - name: login to openshift https://api.containers.aws-ocp.dev.uspto.gov:6443
+      command: oc login  https://api.containers.aws-ocp.dev.uspto.gov:6443  -u schennu  -p welcome123 
+    - name: set the project context to the namespace
+      shell: |
+        {{ openshift_cli }} project dev-{{ project_suffix }}
+    - name: Initate DEV  Build on the project
+      shell: |
+        {{ openshift_cli }} start-build {{ app_name }}
+      ignore_errors: true
+    - name: wait till Build pod state changes from Running to Complete
+      shell: |
+        {{ openshift_cli }} get pods | grep -i build | grep 'Completed'
+      retries: 20
+      delay: 30
+      ignore_errors: true
+    - name: Rollout the latest code to environment
+      shell: |
+        {{ openshift_cli }} rollout status  dc  {{ app_name }}
+
