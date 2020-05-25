@@ -5,11 +5,13 @@ pipeline {
         stage('Git Checkout') {
             steps {
                 echo 'Building..'
+                 git url: "https://github.com/satishchennu1/ansible-oc-jenkinsfile.git", branch: "master"
             }
         }
-        stage('Build') {
+        stage('Build and Deploy to Dev Environment') {
             steps {
                 echo 'Building..'
+                ansible-playbook deploy-ieopetclinic-dev.yaml 
             }
         }
         stage('Test') {
