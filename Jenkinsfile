@@ -14,7 +14,7 @@ pipeline {
                 dir('/usr/bin')
               {
                
-               sh 'ansible-playbook deploy-ieopetclinic-dev.yaml'
+               sh 'sudo ansible-playbook deploy-ieopetclinic-dev.yaml'
                
             }
             }
