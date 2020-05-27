@@ -2,13 +2,14 @@
 - name: Deploy IEoPETCLINIC CI-CD PIPELINE to OPENSHIFT ENVIRONMENT
   hosts: localhost
   gather_facts: false
+  become_user: root
   run_once: true
   vars_files:
     - tmngcms_vars/all
 
   tasks:
-    - name: login to openshift https://ixxxxxxxxxx:6443
-      command: oc login  https://xxxxxxx:6443  -u schennu  -p welcome123 
+    - name: login to openshift https://api.containers.aws-ocp.dev.uspto.gov:6443
+      command: oc login  https://api.containers.aws-ocp.dev.uspto.gov:6443  -u schennu  -p welcome123 --insecure-skip-tls-verify
     - name: set the project context to the namespace
       shell: |
         {{ openshift_cli }} project dev-{{ project_suffix }}
