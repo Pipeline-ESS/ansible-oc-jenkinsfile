@@ -8,8 +8,8 @@
     - tmngcms_vars/all
 
   tasks:
-    - name: login to openshift https://api.containers.aws-ocp.dev.uspto.gov:6443
-      command: oc login  https://api.containers.aws-ocp.dev.uspto.gov:6443  -u schennu  -p welcome123 --insecure-skip-tls-verify
+    - name: login to openshift xxxxxxxxxxxxxxxxxxxxxxxxxxxx
+      command: oc login  https://xxxxxxxx:6443  -u schennu  -p welcome123 --insecure-skip-tls-verify
     - name: set the project context to the namespace
       shell: |
         {{ openshift_cli }} project dev-{{ project_suffix }}
