@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  # reger
+  labels:
+    app: petspring
+  name: petspring
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: petspring
+  template:
+    metadata:
+      labels:
+        app: petspring
+    spec:
+      containers:
+        - image: quay.io/satishchennu1/petclinic
+          imagePullPolicy: Always
+          name: petspring
+          ports:
+            - containerPort: 8080
