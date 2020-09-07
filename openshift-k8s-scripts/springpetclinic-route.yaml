@@ -1,0 +1,72 @@
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  annotations:
+    openshift.io/host.generated: "true"
+  creationTimestamp: "2020-09-07T02:09:54Z"
+  labels:
+    app: springpetclinic
+    app.kubernetes.io/component: springpetclinic
+    app.kubernetes.io/instance: springpetclinic
+    app.kubernetes.io/name: java
+    app.kubernetes.io/part-of: springpetclinic
+    app.openshift.io/runtime: java
+    app.openshift.io/runtime-version: "11"
+  managedFields:
+  - apiVersion: route.openshift.io/v1
+    fieldsType: FieldsV1
+    fieldsV1:
+      f:metadata:
+        f:labels:
+          .: {}
+          f:app: {}
+          f:app.kubernetes.io/component: {}
+          f:app.kubernetes.io/instance: {}
+          f:app.kubernetes.io/name: {}
+          f:app.kubernetes.io/part-of: {}
+          f:app.openshift.io/runtime: {}
+          f:app.openshift.io/runtime-version: {}
+      f:spec:
+        f:port:
+          .: {}
+          f:targetPort: {}
+        f:to:
+          f:kind: {}
+          f:name: {}
+          f:weight: {}
+        f:wildcardPolicy: {}
+    manager: Mozilla
+    operation: Update
+    time: "2020-09-07T02:09:54Z"
+  - apiVersion: route.openshift.io/v1
+    fieldsType: FieldsV1
+    fieldsV1:
+      f:status:
+        f:ingress: {}
+    manager: openshift-router
+    operation: Update
+    time: "2020-09-07T02:09:55Z"
+  name: springpetclinic
+  namespace: petclinic-registry
+  resourceVersion: "51243320"
+  selfLink: /apis/route.openshift.io/v1/namespaces/petclinic-registry/routes/springpetclinic
+  uid: 9e40ebf9-1830-46f3-b8cb-3614c7034e65
+spec:
+  host: springpetclinic-petclinic-registry.apps.containers.aws-ocp.dev.uspto.gov
+  port:
+    targetPort: 8080-tcp
+  to:
+    kind: Service
+    name: springpetclinic
+    weight: 100
+  wildcardPolicy: None
+status:
+  ingress:
+  - conditions:
+    - lastTransitionTime: "2020-09-07T02:09:55Z"
+      status: "True"
+      type: Admitted
+    host: springpetclinic-petclinic-registry.apps.containers.aws-ocp.dev.uspto.gov
+    routerCanonicalHostname: apps.containers.aws-ocp.dev.uspto.gov
+    routerName: default
+    wildcardPolicy: None

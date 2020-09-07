@@ -1,0 +1,113 @@
+apiVersion: build.openshift.io/v1
+kind: BuildConfig
+metadata:
+  annotations:
+    app.openshift.io/vcs-ref: master
+    app.openshift.io/vcs-uri: https://github.com/satishchennu1/ansible-oc-jenkinsfile.git
+    openshift.io/generated-by: OpenShiftWebConsole
+  creationTimestamp: "2020-09-07T02:09:54Z"
+  labels:
+    app: springpetclinic
+    app.kubernetes.io/component: springpetclinic
+    app.kubernetes.io/instance: springpetclinic
+    app.kubernetes.io/name: java
+    app.kubernetes.io/part-of: springpetclinic
+    app.openshift.io/runtime: java
+    app.openshift.io/runtime-version: "11"
+  managedFields:
+  - apiVersion: build.openshift.io/v1
+    fieldsType: FieldsV1
+    fieldsV1:
+      f:metadata:
+        f:annotations:
+          .: {}
+          f:app.openshift.io/vcs-ref: {}
+          f:app.openshift.io/vcs-uri: {}
+          f:openshift.io/generated-by: {}
+        f:labels:
+          .: {}
+          f:app: {}
+          f:app.kubernetes.io/component: {}
+          f:app.kubernetes.io/instance: {}
+          f:app.kubernetes.io/name: {}
+          f:app.kubernetes.io/part-of: {}
+          f:app.openshift.io/runtime: {}
+          f:app.openshift.io/runtime-version: {}
+      f:spec:
+        f:output:
+          f:to:
+            .: {}
+            f:kind: {}
+            f:name: {}
+        f:runPolicy: {}
+        f:source:
+          f:contextDir: {}
+          f:git:
+            .: {}
+            f:uri: {}
+          f:type: {}
+        f:strategy:
+          f:sourceStrategy:
+            .: {}
+            f:from:
+              .: {}
+              f:kind: {}
+              f:name: {}
+              f:namespace: {}
+          f:type: {}
+    manager: Mozilla
+    operation: Update
+    time: "2020-09-07T02:09:54Z"
+  - apiVersion: build.openshift.io/v1
+    fieldsType: FieldsV1
+    fieldsV1:
+      f:spec:
+        f:triggers: {}
+      f:status:
+        f:lastVersion: {}
+    manager: openshift-apiserver
+    operation: Update
+    time: "2020-09-07T02:09:55Z"
+  name: springpetclinic
+  namespace: petclinic-registry
+  resourceVersion: "51243321"
+  selfLink: /apis/build.openshift.io/v1/namespaces/petclinic-registry/buildconfigs/springpetclinic
+  uid: d6098874-57c7-4107-a127-1256130f1195
+spec:
+  failedBuildsHistoryLimit: 5
+  nodeSelector: null
+  output:
+    to:
+      kind: ImageStreamTag
+      name: springpetclinic:latest
+  postCommit: {}
+  resources: {}
+  runPolicy: Serial
+  source:
+    contextDir: /
+    git:
+      uri: https://github.com/satishchennu1/ansible-oc-jenkinsfile.git
+    type: Git
+  strategy:
+    sourceStrategy:
+      from:
+        kind: ImageStreamTag
+        name: java:11
+        namespace: openshift
+    type: Source
+  successfulBuildsHistoryLimit: 5
+  triggers:
+  - generic:
+      secretReference:
+        name: springpetclinic-generic-webhook-secret
+    type: Generic
+  - github:
+      secretReference:
+        name: springpetclinic-github-webhook-secret
+    type: GitHub
+  - imageChange:
+      lastTriggeredImageID: image-registry.openshift-image-registry.svc:5000/openshift/java@sha256:4dc1ae6af9a3efbbd28c1b765faa6fcea3f8eddccd2347ad97713d312f57b511
+    type: ImageChange
+  - type: ConfigChange
+status:
+  lastVersion: 1

@@ -1,0 +1,220 @@
+apiVersion: apps.openshift.io/v1
+kind: DeploymentConfig
+metadata:
+  annotations:
+    app.openshift.io/vcs-ref: master
+    app.openshift.io/vcs-uri: https://github.com/satishchennu1/ansible-oc-jenkinsfile.git
+    openshift.io/generated-by: OpenShiftWebConsole
+  creationTimestamp: "2020-09-07T02:09:54Z"
+  generation: 2
+  labels:
+    app: springpetclinic
+    app.kubernetes.io/component: springpetclinic
+    app.kubernetes.io/instance: springpetclinic
+    app.kubernetes.io/name: java
+    app.kubernetes.io/part-of: springpetclinic
+    app.openshift.io/runtime: java
+    app.openshift.io/runtime-version: "11"
+  managedFields:
+  - apiVersion: apps.openshift.io/v1
+    fieldsType: FieldsV1
+    fieldsV1:
+      f:metadata:
+        f:annotations:
+          .: {}
+          f:app.openshift.io/vcs-ref: {}
+          f:app.openshift.io/vcs-uri: {}
+          f:openshift.io/generated-by: {}
+        f:labels:
+          .: {}
+          f:app: {}
+          f:app.kubernetes.io/component: {}
+          f:app.kubernetes.io/instance: {}
+          f:app.kubernetes.io/name: {}
+          f:app.kubernetes.io/part-of: {}
+          f:app.openshift.io/runtime: {}
+          f:app.openshift.io/runtime-version: {}
+      f:spec:
+        f:replicas: {}
+        f:selector:
+          .: {}
+          f:app: {}
+          f:deploymentconfig: {}
+        f:strategy:
+          f:activeDeadlineSeconds: {}
+          f:rollingParams:
+            .: {}
+            f:intervalSeconds: {}
+            f:maxSurge: {}
+            f:maxUnavailable: {}
+            f:timeoutSeconds: {}
+            f:updatePeriodSeconds: {}
+          f:type: {}
+        f:template:
+          .: {}
+          f:metadata:
+            .: {}
+            f:creationTimestamp: {}
+            f:labels:
+              .: {}
+              f:app: {}
+              f:deploymentconfig: {}
+          f:spec:
+            .: {}
+            f:containers:
+              .: {}
+              k:{"name":"springpetclinic"}:
+                .: {}
+                f:imagePullPolicy: {}
+                f:name: {}
+                f:ports:
+                  .: {}
+                  k:{"containerPort":8080,"protocol":"TCP"}:
+                    .: {}
+                    f:containerPort: {}
+                    f:protocol: {}
+                  k:{"containerPort":8443,"protocol":"TCP"}:
+                    .: {}
+                    f:containerPort: {}
+                    f:protocol: {}
+                  k:{"containerPort":8778,"protocol":"TCP"}:
+                    .: {}
+                    f:containerPort: {}
+                    f:protocol: {}
+                f:resources: {}
+                f:terminationMessagePath: {}
+                f:terminationMessagePolicy: {}
+            f:dnsPolicy: {}
+            f:restartPolicy: {}
+            f:schedulerName: {}
+            f:securityContext: {}
+            f:terminationGracePeriodSeconds: {}
+    manager: Mozilla
+    operation: Update
+    time: "2020-09-07T02:09:54Z"
+  - apiVersion: apps.openshift.io/v1
+    fieldsType: FieldsV1
+    fieldsV1:
+      f:spec:
+        f:template:
+          f:spec:
+            f:containers:
+              k:{"name":"springpetclinic"}:
+                f:image: {}
+        f:triggers: {}
+      f:status:
+        f:availableReplicas: {}
+        f:conditions:
+          .: {}
+          k:{"type":"Available"}:
+            .: {}
+            f:lastTransitionTime: {}
+            f:lastUpdateTime: {}
+            f:message: {}
+            f:status: {}
+            f:type: {}
+          k:{"type":"Progressing"}:
+            .: {}
+            f:lastTransitionTime: {}
+            f:lastUpdateTime: {}
+            f:message: {}
+            f:reason: {}
+            f:status: {}
+            f:type: {}
+        f:details:
+          .: {}
+          f:causes: {}
+          f:message: {}
+        f:latestVersion: {}
+        f:observedGeneration: {}
+        f:readyReplicas: {}
+        f:replicas: {}
+        f:unavailableReplicas: {}
+        f:updatedReplicas: {}
+    manager: openshift-controller-manager
+    operation: Update
+    time: "2020-09-07T02:12:20Z"
+  name: springpetclinic
+  namespace: petclinic-registry
+  resourceVersion: "51244130"
+  selfLink: /apis/apps.openshift.io/v1/namespaces/petclinic-registry/deploymentconfigs/springpetclinic
+  uid: 59c5c966-a9f2-4e67-96cb-053656c5048f
+spec:
+  replicas: 1
+  revisionHistoryLimit: 10
+  selector:
+    app: springpetclinic
+    deploymentconfig: springpetclinic
+  strategy:
+    activeDeadlineSeconds: 21600
+    resources: {}
+    rollingParams:
+      intervalSeconds: 1
+      maxSurge: 25%
+      maxUnavailable: 25%
+      timeoutSeconds: 600
+      updatePeriodSeconds: 1
+    type: Rolling
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: springpetclinic
+        deploymentconfig: springpetclinic
+    spec:
+      containers:
+      - image: image-registry.openshift-image-registry.svc:5000/petclinic-registry/springpetclinic@sha256:93b3384f8beb956d830bf5724ce741c46e0acf003d26caea2aa243a372f1c8a7
+        imagePullPolicy: Always
+        name: springpetclinic
+        ports:
+        - containerPort: 8080
+          protocol: TCP
+        - containerPort: 8443
+          protocol: TCP
+        - containerPort: 8778
+          protocol: TCP
+        resources: {}
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      securityContext: {}
+      terminationGracePeriodSeconds: 30
+  test: false
+  triggers:
+  - imageChangeParams:
+      automatic: true
+      containerNames:
+      - springpetclinic
+      from:
+        kind: ImageStreamTag
+        name: springpetclinic:latest
+        namespace: petclinic-registry
+      lastTriggeredImage: image-registry.openshift-image-registry.svc:5000/petclinic-registry/springpetclinic@sha256:93b3384f8beb956d830bf5724ce741c46e0acf003d26caea2aa243a372f1c8a7
+    type: ImageChange
+  - type: ConfigChange
+status:
+  availableReplicas: 1
+  conditions:
+  - lastTransitionTime: "2020-09-07T02:12:20Z"
+    lastUpdateTime: "2020-09-07T02:12:20Z"
+    message: Deployment config has minimum availability.
+    status: "True"
+    type: Available
+  - lastTransitionTime: "2020-09-07T02:12:20Z"
+    lastUpdateTime: "2020-09-07T02:12:20Z"
+    message: replication controller "springpetclinic-1" successfully rolled out
+    reason: NewReplicationControllerAvailable
+    status: "True"
+    type: Progressing
+  details:
+    causes:
+    - type: ConfigChange
+    message: config change
+  latestVersion: 1
+  observedGeneration: 2
+  readyReplicas: 1
+  replicas: 1
+  unavailableReplicas: 0
+  updatedReplicas: 1
