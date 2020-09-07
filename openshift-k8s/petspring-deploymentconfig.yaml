@@ -1,0 +1,220 @@
+apiVersion: apps.openshift.io/v1
+kind: DeploymentConfig
+metadata:
+  annotations:
+    app.openshift.io/vcs-ref: master
+    app.openshift.io/vcs-uri: https://github.com/satishchennu1/ansible-oc-jenkinsfile.git
+    openshift.io/generated-by: OpenShiftWebConsole
+  creationTimestamp: "2020-09-07T01:39:20Z"
+  generation: 2
+  labels:
+    app: petspring
+    app.kubernetes.io/component: petspring
+    app.kubernetes.io/instance: petspring
+    app.kubernetes.io/name: java
+    app.kubernetes.io/part-of: petspring
+    app.openshift.io/runtime: java
+    app.openshift.io/runtime-version: "11"
+  managedFields:
+  - apiVersion: apps.openshift.io/v1
+    fieldsType: FieldsV1
+    fieldsV1:
+      f:metadata:
+        f:annotations:
+          .: {}
+          f:app.openshift.io/vcs-ref: {}
+          f:app.openshift.io/vcs-uri: {}
+          f:openshift.io/generated-by: {}
+        f:labels:
+          .: {}
+          f:app: {}
+          f:app.kubernetes.io/component: {}
+          f:app.kubernetes.io/instance: {}
+          f:app.kubernetes.io/name: {}
+          f:app.kubernetes.io/part-of: {}
+          f:app.openshift.io/runtime: {}
+          f:app.openshift.io/runtime-version: {}
+      f:spec:
+        f:replicas: {}
+        f:selector:
+          .: {}
+          f:app: {}
+          f:deploymentconfig: {}
+        f:strategy:
+          f:activeDeadlineSeconds: {}
+          f:rollingParams:
+            .: {}
+            f:intervalSeconds: {}
+            f:maxSurge: {}
+            f:maxUnavailable: {}
+            f:timeoutSeconds: {}
+            f:updatePeriodSeconds: {}
+          f:type: {}
+        f:template:
+          .: {}
+          f:metadata:
+            .: {}
+            f:creationTimestamp: {}
+            f:labels:
+              .: {}
+              f:app: {}
+              f:deploymentconfig: {}
+          f:spec:
+            .: {}
+            f:containers:
+              .: {}
+              k:{"name":"petspring"}:
+                .: {}
+                f:imagePullPolicy: {}
+                f:name: {}
+                f:ports:
+                  .: {}
+                  k:{"containerPort":8080,"protocol":"TCP"}:
+                    .: {}
+                    f:containerPort: {}
+                    f:protocol: {}
+                  k:{"containerPort":8443,"protocol":"TCP"}:
+                    .: {}
+                    f:containerPort: {}
+                    f:protocol: {}
+                  k:{"containerPort":8778,"protocol":"TCP"}:
+                    .: {}
+                    f:containerPort: {}
+                    f:protocol: {}
+                f:resources: {}
+                f:terminationMessagePath: {}
+                f:terminationMessagePolicy: {}
+            f:dnsPolicy: {}
+            f:restartPolicy: {}
+            f:schedulerName: {}
+            f:securityContext: {}
+            f:terminationGracePeriodSeconds: {}
+    manager: Mozilla
+    operation: Update
+    time: "2020-09-07T01:39:20Z"
+  - apiVersion: apps.openshift.io/v1
+    fieldsType: FieldsV1
+    fieldsV1:
+      f:spec:
+        f:template:
+          f:spec:
+            f:containers:
+              k:{"name":"petspring"}:
+                f:image: {}
+        f:triggers: {}
+      f:status:
+        f:availableReplicas: {}
+        f:conditions:
+          .: {}
+          k:{"type":"Available"}:
+            .: {}
+            f:lastTransitionTime: {}
+            f:lastUpdateTime: {}
+            f:message: {}
+            f:status: {}
+            f:type: {}
+          k:{"type":"Progressing"}:
+            .: {}
+            f:lastTransitionTime: {}
+            f:lastUpdateTime: {}
+            f:message: {}
+            f:reason: {}
+            f:status: {}
+            f:type: {}
+        f:details:
+          .: {}
+          f:causes: {}
+          f:message: {}
+        f:latestVersion: {}
+        f:observedGeneration: {}
+        f:readyReplicas: {}
+        f:replicas: {}
+        f:unavailableReplicas: {}
+        f:updatedReplicas: {}
+    manager: openshift-controller-manager
+    operation: Update
+    time: "2020-09-07T01:41:03Z"
+  name: petspring
+  namespace: petclinic-registry
+  resourceVersion: "51231133"
+  selfLink: /apis/apps.openshift.io/v1/namespaces/petclinic-registry/deploymentconfigs/petspring
+  uid: e99e4610-2025-4055-b918-a06b7ae8b1b0
+spec:
+  replicas: 1
+  revisionHistoryLimit: 10
+  selector:
+    app: petspring
+    deploymentconfig: petspring
+  strategy:
+    activeDeadlineSeconds: 21600
+    resources: {}
+    rollingParams:
+      intervalSeconds: 1
+      maxSurge: 25%
+      maxUnavailable: 25%
+      timeoutSeconds: 600
+      updatePeriodSeconds: 1
+    type: Rolling
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: petspring
+        deploymentconfig: petspring
+    spec:
+      containers:
+      - image: image-registry.openshift-image-registry.svc:5000/petclinic-registry/petspring@sha256:7eb128b51566aa78a80a1b1753b796cea91ffbdc9c0e0610190eaed492b42c89
+        imagePullPolicy: Always
+        name: petspring
+        ports:
+        - containerPort: 8080
+          protocol: TCP
+        - containerPort: 8443
+          protocol: TCP
+        - containerPort: 8778
+          protocol: TCP
+        resources: {}
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      securityContext: {}
+      terminationGracePeriodSeconds: 30
+  test: false
+  triggers:
+  - imageChangeParams:
+      automatic: true
+      containerNames:
+      - petspring
+      from:
+        kind: ImageStreamTag
+        name: petspring:latest
+        namespace: petclinic-registry
+      lastTriggeredImage: image-registry.openshift-image-registry.svc:5000/petclinic-registry/petspring@sha256:7eb128b51566aa78a80a1b1753b796cea91ffbdc9c0e0610190eaed492b42c89
+    type: ImageChange
+  - type: ConfigChange
+status:
+  availableReplicas: 1
+  conditions:
+  - lastTransitionTime: "2020-09-07T01:41:02Z"
+    lastUpdateTime: "2020-09-07T01:41:02Z"
+    message: Deployment config has minimum availability.
+    status: "True"
+    type: Available
+  - lastTransitionTime: "2020-09-07T01:41:03Z"
+    lastUpdateTime: "2020-09-07T01:41:03Z"
+    message: replication controller "petspring-1" successfully rolled out
+    reason: NewReplicationControllerAvailable
+    status: "True"
+    type: Progressing
+  details:
+    causes:
+    - type: ConfigChange
+    message: config change
+  latestVersion: 1
+  observedGeneration: 2
+  readyReplicas: 1
+  replicas: 1
+  unavailableReplicas: 0
+  updatedReplicas: 1

@@ -1,0 +1,82 @@
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    app.openshift.io/vcs-ref: master
+    app.openshift.io/vcs-uri: https://github.com/satishchennu1/ansible-oc-jenkinsfile.git
+  labels:
+    app: petspring
+    app.kubernetes.io/component: petspring
+    app.kubernetes.io/instance: petspring
+    app.kubernetes.io/name: java
+    app.kubernetes.io/part-of: petspring
+    app.openshift.io/runtime: java
+    app.openshift.io/runtime-version: "11"
+  managedFields:
+  - apiVersion: v1
+    fieldsType: FieldsV1
+    fieldsV1:
+      f:metadata:
+        f:annotations:
+          .: {}
+          f:app.openshift.io/vcs-ref: {}
+          f:app.openshift.io/vcs-uri: {}
+          f:openshift.io/generated-by: {}
+        f:labels:
+          .: {}
+          f:app: {}
+          f:app.kubernetes.io/component: {}
+          f:app.kubernetes.io/instance: {}
+          f:app.kubernetes.io/name: {}
+          f:app.kubernetes.io/part-of: {}
+          f:app.openshift.io/runtime: {}
+          f:app.openshift.io/runtime-version: {}
+      f:spec:
+        f:ports:
+          .: {}
+          k:{"port":8080,"protocol":"TCP"}:
+            .: {}
+            f:name: {}
+            f:port: {}
+            f:protocol: {}
+            f:targetPort: {}
+          k:{"port":8443,"protocol":"TCP"}:
+            .: {}
+            f:name: {}
+            f:port: {}
+            f:protocol: {}
+            f:targetPort: {}
+          k:{"port":8778,"protocol":"TCP"}:
+            .: {}
+            f:name: {}
+            f:port: {}
+            f:protocol: {}
+            f:targetPort: {}
+        f:selector:
+          .: {}
+          f:app: {}
+          f:deploymentconfig: {}
+        f:sessionAffinity: {}
+        f:type: {}
+  name: petspring
+  namespace: petclinic-registry
+spec:
+  clusterIP: 172.30.55.194
+  ports:
+  - name: 8080-tcp
+    port: 8080
+    protocol: TCP
+    targetPort: 8080
+  - name: 8443-tcp
+    port: 8443
+    protocol: TCP
+    targetPort: 8443
+  - name: 8778-tcp
+    port: 8778
+    protocol: TCP
+    targetPort: 8778
+  selector:
+    app: petspring
+    deploymentconfig: petspring
+  sessionAffinity: None
+  type: ClusterIP

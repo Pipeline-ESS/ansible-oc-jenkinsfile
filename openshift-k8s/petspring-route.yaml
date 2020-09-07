@@ -1,0 +1,72 @@
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  annotations:
+    openshift.io/host.generated: "true"
+  creationTimestamp: "2020-09-07T01:39:20Z"
+  labels:
+    app: petspring
+    app.kubernetes.io/component: petspring
+    app.kubernetes.io/instance: petspring
+    app.kubernetes.io/name: java
+    app.kubernetes.io/part-of: petspring
+    app.openshift.io/runtime: java
+    app.openshift.io/runtime-version: "11"
+  managedFields:
+  - apiVersion: route.openshift.io/v1
+    fieldsType: FieldsV1
+    fieldsV1:
+      f:metadata:
+        f:labels:
+          .: {}
+          f:app: {}
+          f:app.kubernetes.io/component: {}
+          f:app.kubernetes.io/instance: {}
+          f:app.kubernetes.io/name: {}
+          f:app.kubernetes.io/part-of: {}
+          f:app.openshift.io/runtime: {}
+          f:app.openshift.io/runtime-version: {}
+      f:spec:
+        f:port:
+          .: {}
+          f:targetPort: {}
+        f:to:
+          f:kind: {}
+          f:name: {}
+          f:weight: {}
+        f:wildcardPolicy: {}
+    manager: Mozilla
+    operation: Update
+    time: "2020-09-07T01:39:20Z"
+  - apiVersion: route.openshift.io/v1
+    fieldsType: FieldsV1
+    fieldsV1:
+      f:status:
+        f:ingress: {}
+    manager: openshift-router
+    operation: Update
+    time: "2020-09-07T01:39:20Z"
+  name: petspring
+  namespace: petclinic-registry
+  resourceVersion: "51230307"
+  selfLink: /apis/route.openshift.io/v1/namespaces/petclinic-registry/routes/petspring
+  uid: 14d186d3-54e8-4154-ab24-2142f9a888b6
+spec:
+  host: petspring-petclinic-registry.apps.containers.aws-ocp.dev.uspto.gov
+  port:
+    targetPort: 8080-tcp
+  to:
+    kind: Service
+    name: petspring
+    weight: 100
+  wildcardPolicy: None
+status:
+  ingress:
+  - conditions:
+    - lastTransitionTime: "2020-09-07T01:39:20Z"
+      status: "True"
+      type: Admitted
+    host: petspring-petclinic-registry.apps.containers.aws-ocp.dev.uspto.gov
+    routerCanonicalHostname: apps.containers.aws-ocp.dev.uspto.gov
+    routerName: default
+    wildcardPolicy: None
