@@ -1,0 +1,21 @@
+apiVersion: build.openshift.io/v1
+kind: BuildConfig
+metadata:
+  name: springpetclinic-dev
+spec:
+  source:
+    type: Git
+    git:
+      uri: 'https://github.com/satishchennu1/ansible-oc-jenkinsfile.git'
+      ref: master
+  strategy:
+      dockerStrategy:
+        dockerfilePath: Dockerfile
+      type: Docker
+    #With this you can set a path to the docker file
+    #dockerStrategy:
+    # dockerfilePath: dockerfile
+  output:
+    to:
+      kind: ImageStreamTag
+      name: 'springpetclinic-dev:latest'

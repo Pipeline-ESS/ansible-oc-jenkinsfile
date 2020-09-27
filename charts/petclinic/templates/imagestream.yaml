@@ -1,0 +1,12 @@
+kind: ImageStream
+apiVersion: image.openshift.io/v1
+metadata:
+  name: "springpetclinic-dev"
+spec:
+  tags:
+    - name: latest
+      from:
+        kind: DockerImage
+        name: image-registry.openshift-image-registry.svc:5000/springpetclinic-dev/springpetclinic-dev
+
+

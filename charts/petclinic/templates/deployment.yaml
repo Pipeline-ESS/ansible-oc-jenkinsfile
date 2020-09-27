@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: springpetclinic-dev
+  labels:
+    app: springpetclinic-dev
+  namespace: springpetclinic-dev
+spec:
+  replicas: {{ .Values.replicas }} 
+  selector:
+    matchLabels:
+      app: springpetclinic-dev
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app: springpetclinic-dev
+    spec:
+      containers:
+      - image: image-registry.openshift-image-registry.svc:5000/springpetclinic-dev/springpetclinic-dev:latest  
+        imagePullPolicy: Always
+        name: springpetclinic-dev
+        ports:
+        - containerPort: 8080
+          protocol: TCP
+        resources:
+          limits:
+            cpu: {{ .Values.resources.limits.cpu }}
+            memory: {{ .Values.resources.limits.memory }}
+          requests:
+            cpu: {{ .Values.resources.requests.cpu }}
+            memory: {{ .Values.resources.requests.memory }} 
+             
